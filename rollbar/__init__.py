@@ -288,7 +288,7 @@ from rollbar.lib.transforms.shortener import ShortenerTransform
 
 ## public api
 
-def init(access_token, environment='production', scrub_fields=None, url_fields=None, **kw):
+def init(environment='production', scrub_fields=None, url_fields=None, **kw):
     """
     Saves configuration variables in this module's SETTINGS.
 
@@ -317,7 +317,6 @@ def init(access_token, environment='production', scrub_fields=None, url_fields=N
             log.warning('Rollbar already initialized. Ignoring re-init.')
         return
 
-    SETTINGS['access_token'] = access_token
     SETTINGS['environment'] = environment
 
     if SETTINGS.get('allow_logging_basic_config'):
