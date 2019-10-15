@@ -302,6 +302,7 @@ def init(environment='production', scrub_fields=None, url_fields=None, **kw):
     """
     global SETTINGS, agent_log, _initialized, _transforms, _serialize_transform, _threads
 
+    SETTINGS['project_id'] = kw['project_id']
     if scrub_fields is not None:
        SETTINGS['scrub_fields'] = list(scrub_fields)
     if url_fields is not None:
@@ -1380,6 +1381,8 @@ def _post_api(path, payload_str, access_token=None):
 
     if access_token is not None:
         headers['X-Rollbar-Access-Token'] = access_token
+
+    headers['X-Rollbar-Project-Id'] = SETTINGS['project_id']
 
     url = urljoin(SETTINGS['endpoint'], path)
     resp = transport.post(url,
