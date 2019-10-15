@@ -1334,7 +1334,6 @@ def _build_payload(data):
         data[k] = _transform(v, key=(k,))
 
     payload = {
-        'access_token': SETTINGS['access_token'],
         'data': data
     }
 
